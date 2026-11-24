@@ -182,3 +182,5 @@ button,a,summary{transition:background-color var(--duration-fast) var(--ease-ui)
 
 /* Audit: identify the exact matched question/task without changing layout. */
 [data-search-match="true"]{outline:1px solid var(--line,#dce2e5);outline-offset:5px;scroll-margin-block:24px}.status.withdrawn{background:#fbeeed;color:#9c3432;border-color:#efcecb}
+
+.rich img[data-rc4-image-state="loading"]{background:#f7f8f6;opacity:.65}.rc4-image-error{display:block}.rc4-image-error button{margin-inline-start:.75em}
