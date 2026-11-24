@@ -1,0 +1,134 @@
+{
+  "schema": "kq-facts-0.2.0",
+  "version": "V0.2.0_RC3",
+  "date": "2026-11-05",
+  "counts": {
+    "papers": 116,
+    "questions": 2624,
+    "materials": 480,
+    "occurrences": 1187,
+    "answers": 1985,
+    "exam_items": 2980,
+    "detection_points": 3005,
+    "content_objects": 2674,
+    "essays": 101
+  },
+  "runtime_counts": {
+    "papers": 148,
+    "questions": 3184,
+    "materials": 600,
+    "occurrences": 1392,
+    "answers": 2505,
+    "exam_items": 3532,
+    "detection_points": 3022,
+    "content_objects": 0,
+    "essays": 134
+  },
+  "main_papers": 113,
+  "formal_reading": 497,
+  "annual_audit_records": 209,
+  "annual_active_records": 204,
+  "classical_works": 39,
+  "batches": [
+    {
+      "id": "2026秋期中三卷",
+      "sha256": "26eefa466652c389a2765fb3065aad7e403f70aeec1937088678d5413c91b9eb"
+    }
+  ],
+  "retirement": {
+    "charts": 303,
+    "question_chart_edges": 14076,
+    "compatibility_load": "on demand only",
+    "chart_statistics_loaded": false,
+    "chart_ocr_loaded": false,
+    "content_objects": "frozen raw table retained in seed/batches; omitted from browser duplicate index"
+  },
+  "sha256": {
+    "facts": "5464dbc99336c15e35cb88eae79a6bcae6fd6e880857046db7384e0665f214fb",
+    "research": "9537b6d7b5fe9bbd3871a2fd8940b54029e0850293fa5f1eaffd54b69cf39b23",
+    "legacy_compat": "999b808f4271cd2cdc058159ea9cbf39f1d7662d5c47289adea22d1d04fb7393"
+  },
+  "runtime_increment": {
+    "date": "2026-11-24",
+    "batch": "20261124_十七中七八上期中",
+    "main_papers": 146,
+    "formal_reading": 669,
+    "facts_sha256": "2f4b8030b6f7def8f3b29e63126f853cae018109252b352d72847fc215036f04",
+    "papers": [
+      {
+        "paper_id": "七上|26-17-M",
+        "title": "2026-2027 学年河北省石家庄市第十七中学七年级（上）期中语文试卷",
+        "action": "更新既有试卷及参考答案",
+        "main_questions": 16,
+        "units": 20,
+        "answers": 20,
+        "paper_sha256": "87222a5eafc709af6bab4220218a71091b68916747272f565dffc36721a5bb37",
+        "answer_sha256": "e4bf28ee0d8bc680ef1b557e70ab3de5f00cb9c12e9602277d3bf0f87e7e626c",
+        "answer_status": "自行整理参考答案（非官方）",
+        "source_web_status": "同卷未解析",
+        "source_url": "https://www.jyeoo.com/chinese/report/detail/6eSSU8wLd5J2TvOwbSzlwydmZBXrgz5K691Xy9JXU51mtra71dmNEG"
+      },
+      {
+        "paper_id": "八上|26-17-M",
+        "school": "石家庄市第十七中学",
+        "main_questions": 17,
+        "units": 17,
+        "answers": 17,
+        "formal_readings": 5,
+        "total_score": 100,
+        "year_status": "supplied_label",
+        "question_score_sum": 100,
+        "reviewed_copy_sha256": "112e8287161ddb62eb60b37a289b06d9d2ff4ba796826a8f8da41b0f6cb01ee5",
+        "answer_sha256": "123e34c7c73158f110f79d6341cda070ec4181965b4243b82da12f9b7de82555",
+        "answer_status": "菁优同卷核对整理参考答案（非官方）",
+        "preview_images": 0,
+        "warnings": [
+          "文言乙注①“某”的解释沿用原卷；“某”实际是写信人的自称，该注疑误，见核校记录。",
+          "菁优网页合并为9个题组，本次按桌面原卷恢复第1—17题；原卷写“黄开湘”，保留原卷人名。",
+          "作文要求按原卷“600字左右”，不套用网页中不同的字数及附加要求。"
+        ],
+        "action": "新增试卷及参考答案",
+        "title": "2026-2027 学年河北省石家庄市第十七中学八年级（上）期中语文试卷",
+        "source_url": "https://www.jyeoo.com/chinese/report/detail/63lK7aiA701p6MPWLH7zpL2lFcfFdhdYdA1eFOmttex3RUejX6mDei"
+      }
+    ],
+    "reference_update": {
+      "paper_id": "八上|26-27-M",
+      "title": "2026—2027学年 石家庄市第二十七中学 八上期中语文试卷",
+      "answers": 21,
+      "refreshed_answers": 15,
+      "filled_questions": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        21
+      ],
+      "source_sha256": "a80cf98575ce08402be9243a66aeafbdbbca6452b838580feb7959691b120554",
+      "replaced_sha256": "f15a00b67f1281f72b0abf5a5d911fca8f470bbdb13cfbaa161e9335187cf377",
+      "answer_status": "非官方参考答案",
+      "note": "本卷采用用户指定的校订排版稿。参考答案采用11月12日整理版，第1—21题齐全，作文附写作提示和范文。非官方答案。",
+      "batch": "20261114_二十七中八上期中答案更新"
+    }
+  },
+  "stage_scope_audit": {
+    "formal_papers": 138,
+    "stage_papers": 119,
+    "verified_at": "2026-11-13"
+  },
+  "full_stage_audit": {
+    "date": "2026-11-13",
+    "stage_count": 12,
+    "chart_count": 15,
+    "stage_papers": 119
+  },
+  "runtime_main_papers": 146,
+  "release_partition": {
+    "policy": "RC4-ARM-20261122",
+    "revision": "20261124_ARM规范分包",
+    "original_files_optional": 6,
+    "resource_map_sha256": "08c4b10788acdd428adfd9fe8761e113f9a77403831970bd70c1b9e10858f0c1",
+    "runtime_facts_unchanged": true
+  }
+}

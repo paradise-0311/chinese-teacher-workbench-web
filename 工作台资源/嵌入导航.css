@@ -1,0 +1,8 @@
+/* Only the repeated module name in the embedded toolbar is abbreviated.
+   Home/search/filter/basket controls and the standalone bank remain unchanged. */
+.is-workspace-embedded .home-tools-header{padding:8px 20px}
+.is-workspace-embedded .home-brand>span,.is-workspace-embedded .workspace-home-link>span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Hide only the small-question trace in reading previews. IDs stay in data,
+   DOM attributes, source traceability and the unchanged export code. */
+.preview-dialog .question-unit .unit-top>.v01-trace{display:none}

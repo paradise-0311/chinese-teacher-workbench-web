@@ -1,0 +1,9 @@
+.keyboard-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.keyboard-help{max-width:48rem;margin:auto}
+.keyboard-help dl{margin:24px 0}
+.keyboard-help dl>div{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line,#dce3e8)}
+.keyboard-help dt{font-weight:600;line-height:2}
+.keyboard-help dd{margin:0;line-height:1.8}
+.keyboard-help kbd{display:inline-block;min-width:28px;padding:0 6px;border:1px solid #a5b5c4;border-radius:4px;background:#f2f5f8;color:#18334b;font-family:inherit;font-size:14px;text-align:center}
+#queryBack{align-self:center}
+@media(max-width:600px){.keyboard-help dl>div{grid-template-columns:88px 1fr;gap:12px}.keyboard-actions{gap:2px}}

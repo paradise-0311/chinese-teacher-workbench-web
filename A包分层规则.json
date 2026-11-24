@@ -1,0 +1,19 @@
+{
+  "policy": "RC4-ARM-20261122",
+  "max_A_zip_MiB": 60,
+  "core": [
+    "查询运行数据",
+    "原题与答案正文",
+    "必需题图",
+    "Word组卷格式档案",
+    "有效修订稿与预览"
+  ],
+  "originals": "整卷Word/PDF及原始标签底表进入R，保持相对路径与SHA256",
+  "maintenance": "历史核验、维护工具、底表与验收材料进入M",
+  "exceptions": [
+    "考情查询/assets/revisions/内经确认修订稿保留A"
+  ],
+  "baseline": "",
+  "date": "2026-11-22",
+  "latest_bank_sync": "2026-11-24"
+}

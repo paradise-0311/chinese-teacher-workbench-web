@@ -1,0 +1,1 @@
+(()=>{'use strict';const d=window.KQ_REAL_ESSAY_DATA;if(!d||!Array.isArray(d.records))return;const by=new Map(d.records.map(r=>[r.recordId,r]));const aliases=d.aliases||{};window.KQ_REAL_ESSAY_MATCH=Object.freeze({find:id=>by.get(id)||by.get(aliases[id])||null,open:()=>false,createAction:()=>null,createQuestionActions:()=>[]});})();

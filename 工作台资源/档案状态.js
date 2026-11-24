@@ -1,0 +1,1 @@
+window.RC4_ARCHIVE={installed:false};
