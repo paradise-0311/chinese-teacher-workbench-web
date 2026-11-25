@@ -448,5 +448,25 @@
     "hidden_csv_export": true,
     "essay_theme_statistics_enabled": false,
     "redundant_guidance_removed": true
-  }
+  },
+  "confirmed_reading_group_update": {
+    "date": "2026-11-25",
+    "paperId": "七上|25-23-SEP",
+    "readingGroupId": "readinggroup_95b7316dbb8fcb7d7bd2",
+    "groupCount": 1,
+    "materials": 4,
+    "questions": 3,
+    "sourceSha256": "0b36934fbc62de411f173de9a76afc6aca3e11eea43a8180b2466adb31703cd1",
+    "source": "未计入记录_审核结果.xlsx",
+    "sourceSchool": "石家庄二十三中",
+    "title": "广州城市发展、文化及幸福感",
+    "readingBlock": "非文学类阅读",
+    "textType": "非连续性文本",
+    "resolvedOriginalQuestionAuditIds": [
+      "U0005",
+      "U0006",
+      "U0007"
+    ]
+  },
+  "statistics_change_scope": "仅七上23中第一次月考第10题：4则广州材料为1个非文学阅读题组，关联3道原题"
 }

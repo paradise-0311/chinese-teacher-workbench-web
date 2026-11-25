@@ -1,10 +1,19 @@
 {
-  "release": "v1.3.1-reviewed-themes",
-  "sourceCommit": "b028d53ab272dda0ddffbfc18326c24c45eb8202",
-  "dataVersion": "19b02eb1f368643c3db5",
-  "manifest": "考情查询/data/phase-3c/19b02eb1f368643c3db5/manifest.json",
+  "release": "v1.3.2-confirmed-reading-group",
+  "sourceCommit": "bbdeb2e2126ec45a36c74b53ef47a759122a2f54",
+  "dataVersion": "bfbf4d0ef9376b4a5a59",
+  "manifest": "考情查询/data/phase-3c/bfbf4d0ef9376b4a5a59/manifest.json",
   "previousMain": "25fa88ffde293f65b67335e8d3266d8ce68bde6e",
   "diagnostics": "diagnostics-3c.html",
   "reviewedMaterials": 10,
-  "bankVersion": "04baccaa7f589312e180"
+  "bankVersion": "04baccaa7f589312e180",
+  "confirmedReadingGroup": {
+    "date": "2026-11-25",
+    "paperId": "七上|25-23-SEP",
+    "readingGroupId": "readinggroup_95b7316dbb8fcb7d7bd2",
+    "groupCount": 1,
+    "materials": 4,
+    "questions": 3,
+    "sourceSha256": "0b36934fbc62de411f173de9a76afc6aca3e11eea43a8180b2466adb31703cd1"
+  }
 }

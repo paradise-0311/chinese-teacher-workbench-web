@@ -22,11 +22,11 @@ class StageEngine{
  for(const u of units){const items=u.item_ids.map(id=>e.data.exam_items.find(i=>i.id===id)).filter(Boolean);if(e.papers.get(u.paper_id).batch!=='baseline')for(const r of items.filter(r=>basicBlock(r.block)||recall(r)))add(0,'task',ancientRecall(r)?'古诗文默写':r.task||clean(u.text).slice(0,80),{...infoFor(u),notes:recall(r)?[r.task]:[],sources:[r.source]});}
  const poemGenres=['古诗词','古诗阅读','七言律诗','七言绝句','元曲小令'],classicalGenres=['文言文','课内文言','课外文言'];
  const isPoem=o=>o.genres.some(g=>poemGenres.includes(g))||o.blocks.includes('古诗词')&&!o.genres.some(g=>classicalGenres.includes(g)),isClassical=o=>o.genres.some(g=>classicalGenres.includes(g))||o.blocks.includes('文言文')&&!o.genres.some(g=>poemGenres.includes(g)),isModern=o=>o.blocks.includes('现代文阅读');
- const title=o=>this.registry.get(o.work_id)?.canonical_title||o.title||'未题名阅读材料';
+ const title=o=>o.reading_group_title||this.registry.get(o.work_id)?.canonical_title||o.title||'未题名阅读材料';
  for(const o of os){const b=isPoem(o)?1:isClassical(o)?2:isModern(o)?3:-1;if(b<0)continue;const ids=unitids(o),tags=unique(ids.flatMap(id=>v.paths(us.get(id)).map(d=>d.secondary||d.primary))),ic=inclass(o);
   const tasks=unique(ids.flatMap(id=>us.get(id)?.item_ids||[]).map(id=>e.data.exam_items.find(i=>i.id===id)?.task));
   const notes=b===2?[ic&&['课内','课外','课内诵读'].includes(ic)?ic:'课内外待核',...tags,...tasks]:b===3?[modernKind(o),...o.genres,...o.themes,...tags,...tasks]:unique([...tags,...tasks]);
-  add(b,'work',title(o),{identity:o.work_id,paper_ids:[o.paper_id],unit_ids:ids,occurrence_ids:[o.id],notes,sources:[{path:o.source_path,anchor:o.source_anchor,work_id:o.work_id}]});
+  add(b,'work',title(o),{identity:o.reading_group_id||o.work_id,paper_ids:[o.paper_id],unit_ids:ids,occurrence_ids:[o.id],notes,sources:[{path:o.source_path,anchor:o.source_anchor,work_id:o.work_id}]});
   if(b===3){for(const g of o.genres)add(b,'genre',g,{paper_ids:[o.paper_id],unit_ids:ids,occurrence_ids:[o.id],notes:[modernKind(o)]});if(o.themes.length&&o.question_ids.some(id=>e.q.get(id)?.theme_eligible!==false))for(const theme of o.themes)add(b,'theme',theme,{paper_ids:[o.paper_id],unit_ids:ids,occurrence_ids:[o.id],notes:[modernKind(o)]});}
  }
  // Comparison groups follow explicitly linked material relations; multiple unrelated groups stay separate.
