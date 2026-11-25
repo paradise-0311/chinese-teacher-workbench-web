@@ -3,16 +3,14 @@ root.KQStageView={create:function({stageEngine,engine,view,h,btn,show,meta,evide
  const chartEngine=new KQStageCharts.ChartEngine(stageEngine,KQ_STAGE_CHART_EVIDENCE);let snapshot=null,visibleRows=[],visibleCharts=[];
  const shortUnit=unit=>unit==='阅读材料数'?'篇':'份';
  function bar(r){const unit=shortUnit(r.unit),fraction=r.count+'/'+r.denominator+unit;return '<li class="stage-bar-row" data-chart-value="'+r.count+'" data-denominator="'+r.denominator+'"><button class="stage-bar" data-action="stage-row" data-id="'+h(r.key)+'" aria-label="'+h(r.label+'，'+fraction+'，'+(r.ratio*100).toFixed(1)+'%，查看涉及试卷')+'"><span class="stage-bar-label">'+h(r.label)+((r.curriculum_notes||[]).length?'<small class="stage-curriculum-note">'+h(r.curriculum_notes.join('；'))+'</small>':'')+'</span><span class="stage-bar-value">'+r.count+'/'+r.denominator+'<small>'+unit+'</small></span><span class="stage-bar-track" aria-hidden="true"><span class="stage-bar-fill" style="width:'+(100*r.ratio).toFixed(3)+'%"></span></span></button></li>';}
- function coverageLabel(c){return c.id.endsWith('-inclass')?'确认直接考教材':c.id.endsWith('-structure')?'已确认阅读组合':c.unit==='阅读材料数'?'有主主题记录':'至少计入一项';}
  function chart(c){
-  const material=c.unit==='阅读材料数',caption='分母：'+c.denominator+(material?' 篇文学类阅读材料':' 份筛中试卷'),excluded=c.uncovered_paper_ids.length;
-  const coverage=material?'已确认主主题 '+c.registered_materials+'/'+c.denominator+' 篇；':'';
-  return '<section class="stage-chart '+(material?'stage-chart-theme':'')+'" data-chart="'+c.id+'" data-unit="'+c.unit+'" data-denominator="'+c.denominator+'"><header><h3>'+h(c.title)+'</h3><p>'+h(caption)+(c.id==='basic-forms'?'；沿用原表作答形式':'')+'</p></header>'+
+  const material=c.unit==='阅读材料数',links=[];
+  if(c.uncovered_paper_ids.length)links.push(btn('查看未计入的 '+c.uncovered_paper_ids.length+' 份','stage-row','coverage:'+c.id));
+  if(c.unregistered_materials?.length)links.push(btn('查看主主题待核的 '+c.unregistered_materials.length+' 篇','stage-row','materials:'+c.id));
+  return '<section class="stage-chart '+(material?'stage-chart-theme':'')+'" data-chart="'+c.id+'" data-unit="'+c.unit+'" data-denominator="'+c.denominator+'"><header><h3>'+h(c.title)+'</h3></header>'+
     (c.rows.length?'<ol class="stage-bar-list">'+c.rows.slice(0,5).map(bar).join('')+'</ol>':'<p class="stage-no-data">当前范围暂无可计入此图的记录。</p>')+
     (c.rows.length>5?'<details class="stage-chart-more"><summary>查看其余 '+(c.rows.length-5)+' 个类别</summary><ol class="stage-bar-list" start="6">'+c.rows.slice(5).map(bar).join('')+'</ol></details>':'')+
-    '<p class="stage-chart-coverage">'+h(coverage+coverageLabel(c)+' '+c.covered_papers+'/'+snapshot.paper_count+' 份试卷')+
-    (excluded?' · '+btn('查看未计入的 '+excluded+' 份','stage-row','coverage:'+c.id):'')+
-    (c.unregistered_materials?.length?' · '+btn('查看主主题待核的 '+c.unregistered_materials.length+' 篇','stage-row','materials:'+c.id):'')+'</p></section>';
+    (links.length?'<p class="stage-chart-coverage">'+links.join(' · ')+'</p>':'')+'</section>';
  }
  function block(b){return '<section class="stage-chart-block" data-stage-block="'+b.id+'"><header class="stage-block-heading"><h2>'+btn(b.title,'stage-block',b.id,'text-button')+'</h2></header><div class="stage-chart-grid">'+b.charts.map(chart).join('')+'</div><p class="stage-block-evidence">'+btn(b.id===5?'查阅作文原题':'查阅本板块原题','stage-content',b.id)+'</p></section>';}
  function scopeLabel(f){
@@ -27,7 +25,7 @@ root.KQStageView={create:function({stageEngine,engine,view,h,btn,show,meta,evide
  }
  function render(f){snapshot=chartEngine.aggregate(f);visibleRows=[];visibleCharts=[];if(!snapshot.paper_ids.length)return '<div class="empty"><h2>当前范围没有匹配试卷</h2><p>可以更换关键词或其他查询条件。</p>'+btn('重置筛选','reset','','secondary')+'</div>';
   const chosen=f.stageBlock!==''&&f.stageBlock!==undefined?Number(f.stageBlock):null,blocks=chosen===null?snapshot.chart_blocks:snapshot.chart_blocks.filter(b=>b.id===chosen);visibleCharts=blocks.flatMap(b=>b.charts);visibleRows=visibleCharts.flatMap(c=>c.rows);
-  return '<nav class="stage-switch" aria-label="选择考情板块">'+btn('六板块总览','stage-block','','stage-tab'+(chosen===null?' selected':''))+KQStages.names.map((name,id)=>'<button class="stage-tab'+(chosen===id?' selected':'')+'" data-action="stage-block" data-id="'+id+'" aria-current="'+(chosen===id?'true':'false')+'">'+h(name)+'</button>').join('')+'</nav><div class="stage-scope"><p>当前筛选：'+h(scopeLabel(f))+' · '+btn('查看筛中的 '+snapshot.paper_count+' 份试卷','stage-papers')+'</p><p>同一份卷可计入多个类别；各项份数相加可能超过试卷总数。'+(f.keyword?'关键词先筛选试卷，图表统计入选卷的全部已确认内容。':'')+'</p></div><div class="stage-chart-overview">'+blocks.map(block).join('')+'</div>';
+  return '<nav class="stage-switch" aria-label="选择考情板块">'+btn('六板块总览','stage-block','','stage-tab'+(chosen===null?' selected':''))+KQStages.names.map((name,id)=>'<button class="stage-tab'+(chosen===id?' selected':'')+'" data-action="stage-block" data-id="'+id+'" aria-current="'+(chosen===id?'true':'false')+'">'+h(name)+'</button>').join('')+'</nav><div class="stage-chart-overview">'+blocks.map(block).join('')+'</div>';
  }
  function row(key){if(key.startsWith('content:')){const b=snapshot?.blocks[Number(key.slice(8))];if(!b)return;return {key,block:b.id,label:b.title,unit_ids:[...new Set(b.rows.flatMap(r=>r.unit_ids))],paper_ids:b.paper_ids,occurrence_ids:[...new Set(b.rows.flatMap(r=>r.occurrence_ids))],essay_ids:[...new Set(b.rows.flatMap(r=>r.essay_ids))],materials:snapshot.chart_metrics.filter(r=>r.block===b.id).flatMap(r=>r.materials)};}return snapshot?.chart_metrics.find(r=>r.key===key);}
  function records(key){

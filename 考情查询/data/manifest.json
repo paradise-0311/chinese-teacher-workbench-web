@@ -22,7 +22,8 @@
     "exam_items": 3532,
     "detection_points": 3022,
     "content_objects": 0,
-    "essays": 134
+    "essays": 134,
+    "work_registry": 936
   },
   "main_papers": 113,
   "formal_reading": 497,
@@ -53,7 +54,7 @@
     "batch": "20261124_十七中七八上期中",
     "main_papers": 146,
     "formal_reading": 669,
-    "facts_sha256": "2f4b8030b6f7def8f3b29e63126f853cae018109252b352d72847fc215036f04",
+    "facts_sha256": "6b08e367fe5e76d3e7ee30025db04f41b034b57bf0935610212dfc6cd54c04c0",
     "papers": [
       {
         "paper_id": "七上|26-17-M",
@@ -130,5 +131,21 @@
     "original_files_optional": 6,
     "resource_map_sha256": "08c4b10788acdd428adfd9fe8761e113f9a77403831970bd70c1b9e10858f0c1",
     "runtime_facts_unchanged": true
+  },
+  "reviewed_theme_update": {
+    "date": "2026-11-25",
+    "source": "阅读主题待核与未计入核对表_已核对.xlsx",
+    "sha256": "5b44d47f08118e8d63c85a8370a93f5246be95b0c5116df86898792d64ea5c9e",
+    "materials": 10,
+    "remainingPending": 0,
+    "remainingUncovered": 1,
+    "identitySplit": {
+      "oldWork": "work_696415e3b79f702d17ccc41c",
+      "newWork": "work_cfda795c61da5c6e933c172e",
+      "authors": [
+        "孙丽丽",
+        "章中林"
+      ]
+    }
   }
 }

@@ -4,7 +4,7 @@
   "release_date": "2026-11-24",
   "UI": "六板块 15 图统一显示分母、计入与未计入原因，文学主主题支持按篇查看待核材料",
   "data_evidence": "RC4.2已核证据",
-  "raw_facts_and_labels_modified": false,
+  "raw_facts_and_labels_modified": true,
   "originals_optional": true,
   "bank_business_data_modified": true,
   "bank_frontend_buttons_repaired": true,
@@ -19,7 +19,7 @@
   "remaining_inclass_records": 57,
   "remaining_reference_text_positions": 625,
   "stage_overview_charts": true,
-  "stage_chart_dimensions": 15,
+  "stage_chart_dimensions": 14,
   "stage_original_statistics_unchanged": false,
   "filter_candidates": "按正式样本动态计算；学校与命题来源双向联动",
   "stage_keyword_scope": "关键词限定命中的独立试卷；图表统计这些试卷的全部已核内容",
@@ -420,5 +420,33 @@
     "teacher_limit_MiB": 60,
     "question_bank_unchanged": true,
     "facts_unchanged": true
+  },
+  "reviewed_theme_update": {
+    "date": "2026-11-25",
+    "source": "阅读主题待核与未计入核对表_已核对.xlsx",
+    "sha256": "5b44d47f08118e8d63c85a8370a93f5246be95b0c5116df86898792d64ea5c9e",
+    "materials": 10,
+    "remainingPending": 0,
+    "remainingUncovered": 1,
+    "identitySplit": {
+      "oldWork": "work_696415e3b79f702d17ccc41c",
+      "newWork": "work_cfda795c61da5c6e933c172e",
+      "authors": [
+        "孙丽丽",
+        "章中林"
+      ]
+    }
+  },
+  "offline_ui_revision": {
+    "hidden_csv_export": true,
+    "essay_theme_statistics_enabled": false
+  },
+  "other_chart_statistics_unchanged": true,
+  "ui_revision": {
+    "date": "2026-11-25",
+    "scope": "离线与在线",
+    "hidden_csv_export": true,
+    "essay_theme_statistics_enabled": false,
+    "redundant_guidance_removed": true
   }
 }

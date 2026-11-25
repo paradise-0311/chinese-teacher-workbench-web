@@ -16,7 +16,6 @@ const dimensions=[
  {id:'modern-nonliterary-types',block:3,title:'非文学类 · 阅读题型',unit:'涉及试卷数'},
  {id:'novel-works',block:4,title:'作品覆盖',unit:'涉及试卷数'},
  {id:'novel-types',block:4,title:'名著题型',unit:'涉及试卷数'},
- {id:'essay-themes',block:5,title:'作文主题',unit:'涉及试卷数'},
  {id:'essay-forms',block:5,title:'命题形式',unit:'涉及试卷数'}
 ];
 class ChartEngine{
@@ -68,11 +67,8 @@ class ChartEngine{
   }
   for(const u of units)if(nonlitIds.has(u.id)){for(const d of v.paths(u).filter(d=>d.block==='现代文阅读'&&d.secondary))add('modern-nonliterary-types',d.secondary,{...info(u),sources:[d.basis]});for(const c of this.stage.verified.unit_categories?.[u.id]||[])if(c.block===3)add('modern-nonliterary-types',c.label,{...info(u),sources:[c.source]});}
   for(const r of base.blocks[4].rows.filter(r=>r.kind==='novel'))addOld('novel-works',r);
-  const scopedEssay=new Set(e.essayResults({mainOnly:true}).filter(r=>pids.has(r.paper_id)).map(r=>r.id)),formAliases=new Map(this.ev.essay_form_aliases.map(r=>[r.from,r.to])),forms=new Set(['命题','半命题','话题','材料']),essayThemes=new Set(this.stage.ev.essay_themes.map(r=>r.label));
+  const scopedEssay=new Set(e.essayResults({mainOnly:true}).filter(r=>pids.has(r.paper_id)).map(r=>r.id)),formAliases=new Map(this.ev.essay_form_aliases.map(r=>[r.from,r.to])),forms=new Set(['命题','半命题','话题','材料']);
   for(const task of v.evidence.essay_tasks){const raw=e.data.essays.filter(r=>task.member_ids.includes(r.id)&&scopedEssay.has(r.id));if(!raw.length)continue;const r=raw.find(r=>r.id===task.representative_id)||raw[0];if(r.eligible===false)continue;const ps=uniq(raw.map(r=>r.paper_id)),ids=units.filter(u=>raw.some(r=>r.paper_id===u.paper_id&&u.number_key===String(r.number).replace(/（/g,'(').replace(/）/g,')'))).map(u=>u.id),data={paper_ids:ps,unit_ids:ids,essay_ids:[r.id],sources:raw.map(r=>r.source)};
-   const reviewedTheme=(this.ev.essay_theme_records||[]).find(t=>t.essay_id===r.id);
-   const label=reviewedTheme?.label||r.theme;
-   if(essayThemes.has(label))add('essay-themes',label,reviewedTheme?{...data,sources:[reviewedTheme.source,...data.sources]}:data);
    const form=formAliases.get(r.form)||r.form;if(forms.has(form))add('essay-forms',form,data);
   }
   for(const r of this.ev.essay_form_records||[])if(scopedEssay.has(r.essay_id)&&unitById.get(r.unit_id)?.paper_id===r.paper_id&&forms.has(r.form))add('essay-forms',r.form,{paper_ids:[r.paper_id],unit_ids:[r.unit_id],essay_ids:[r.essay_id],sources:[r.source]});
