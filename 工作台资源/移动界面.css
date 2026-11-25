@@ -1639,3 +1639,152 @@ body[data-mobile-ui] .m-zoom-original .m-zoom-body img {
 }
 
 @media(max-width:899px){html.is-workspace-embedded body[data-mobile-ui] .m-global{display:none}}
+
+/* Huawei feedback: compact stage controls and explicit native-control geometry. */
+@media (max-width:899px) {
+body[data-mobile-ui] {
+  --m-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23536873' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --m-search-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5' fill='none' stroke='%23365f70' stroke-width='1.8'/%3E%3Cpath d='m16 16 5 5' fill='none' stroke='%23365f70' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+body[data-mobile-ui] select:not([multiple]) {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  padding-inline-end: 38px !important;
+  background-image: var(--m-select-arrow) !important;
+  background-position: right 13px center !important;
+  background-size: 12px 8px !important;
+  background-repeat: no-repeat !important;
+}
+body[data-mobile-ui] :is(.school-picker,.home-utility-menu,.advanced-filters) > summary {
+  position: relative;
+  list-style: none;
+  padding-inline-end: 38px !important;
+  background-image: var(--m-select-arrow);
+  background-position: right 13px center;
+  background-size: 12px 8px;
+  background-repeat: no-repeat;
+}
+body[data-mobile-ui] :is(.school-picker,.home-utility-menu,.advanced-filters) > summary::marker { content: ""; }
+body[data-mobile-ui] :is(.school-picker,.home-utility-menu,.advanced-filters) > summary::-webkit-details-marker { display: none; }
+body[data-mobile-ui] :is(.school-picker,.home-utility-menu,.advanced-filters) > summary::after { content: none; }
+body[data-mobile-ui] :is(.home-utility-menu,.advanced-filters) > summary > svg { display: none; }
+
+body[data-mobile-ui] :is(.home-search-row,.search-row,form.home-search) {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) 56px;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 46px;
+  height: auto;
+}
+body[data-mobile-ui] form.home-search {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body[data-mobile-ui] form.home-search > svg,
+body[data-mobile-ui] .search-row > .search-box > svg,
+body[data-mobile-ui] .home-search-submit > svg { display: none; }
+body[data-mobile-ui] .search-row > .search-box {
+  display: block;
+  height: 46px;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+body[data-mobile-ui] :is(#homeKeyword,#home-query,#keyword) {
+  box-sizing: border-box;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  margin: 0 !important;
+  padding: 10px 12px 10px 38px !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
+  background-color: var(--m-surface) !important;
+  background-image: var(--m-search-icon) !important;
+  background-position: left 12px center !important;
+  background-repeat: no-repeat !important;
+  background-size: 18px 18px !important;
+  color: var(--m-ink);
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+body[data-mobile-ui] :is(.home-search-row,.search-row,form.home-search) > button[type="submit"] {
+  position: static !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px !important;
+  min-width: 56px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+body[data-mobile-ui] form.home-search > .icon-button {
+  position: absolute;
+  inset-inline-end: 68px;
+  top: 1px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+}
+body[data-mobile-ui] form.home-search:has(>.icon-button) #home-query { padding-inline-end: 44px !important; }
+body[data-mobile-ui] .search-tools .search-box {
+  height: 46px !important;
+  padding: 0 !important;
+  background-image: var(--m-search-icon) !important;
+  background-position: left 12px center !important;
+  background-size: 18px 18px !important;
+  background-repeat: no-repeat !important;
+}
+body[data-mobile-ui] .search-tools .search-box > svg,
+body[data-mobile-ui] .search-tools .search-box > kbd { display: none; }
+body[data-mobile-ui] .search-tools .search-box input { height: 44px; padding: 9px 0 9px 38px !important; }
+body[data-mobile-ui] .search-tools .search-box > .icon-button { flex: 0 0 44px; height: 44px; margin: 0; }
+
+body[data-mobile-ui][data-m-exam-page="stages"] .heading,
+body[data-mobile-ui][data-m-exam-page="stages"] #summary,
+body[data-mobile-ui][data-m-exam-page="stages"] .filter-panel:not(.m-filter-open) .search-row { display: none !important; }
+body[data-mobile-ui][data-m-exam-page="stages"] .filter-panel { margin-bottom: 0; }
+body[data-mobile-ui][data-m-exam-page="stages"] #primaryFilters { flex-wrap: nowrap; }
+body[data-mobile-ui][data-m-exam-page="stages"] .filter-panel:not(.m-filter-open) #primaryFilters > label {
+  min-width: 0;
+  gap: 0;
+  font-size: 0;
+  flex: .8 1 0%;
+}
+body[data-mobile-ui][data-m-exam-page="stages"] .filter-panel:not(.m-filter-open) #primaryFilters > label:nth-child(2) { flex-grow: 1.2; }
+body[data-mobile-ui][data-m-exam-page="stages"] #primaryFilters select { height: 44px; padding-inline-start: 10px; font-size: 16px; }
+body[data-mobile-ui][data-m-exam-page="stages"] #activeFilters :is([data-id="semester"],[data-id="stage"],[data-action="reset"]) { display: none; }
+body[data-mobile-ui][data-m-exam-page="stages"] .m-no-stage-extras #activeFilters { display: none; }
+body[data-mobile-ui][data-m-exam-page="stages"] #activeFilters { padding-top: 0; gap: 0 8px; }
+body[data-mobile-ui] .m-stage-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0 0;
+}
+body[data-mobile-ui] .m-stage-controls .m-stage-scope { margin: 0; font-size: 13px; }
+body[data-mobile-ui] .m-stage-controls .m-stage-locate { flex: 0 0 116px; margin: 0; }
+body[data-mobile-ui] .m-stage-controls .m-stage-locate select {
+  width: 100%;
+  height: 44px;
+  padding-inline-start: 10px;
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+  color: var(--m-accent);
+}
+}
