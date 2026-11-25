@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'self'; img-src 'self' data:"><title>第三阶段C 当前版本手机诊断</title>
+<style>body{margin:0;background:#f5f6f7;color:#16232c;font:16px/1.65 Arial,"Microsoft YaHei",sans-serif}main{max-width:980px;margin:auto;padding:20px}section{background:white;border:1px solid #dce2e6;border-radius:8px;padding:18px;margin:16px 0}h1{font-size:25px}h2{font-size:19px}button{font:inherit;padding:9px 14px;margin:5px 6px 5px 0;cursor:pointer}input,textarea{box-sizing:border-box;width:100%;font:inherit;padding:8px}textarea{min-height:200px;font:13px/1.5 monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere}iframe{width:100%;height:720px;border:1px solid #ced7de;background:white}.note{color:#566773}#status{font-weight:bold}a{color:#1761ab}</style></head><body><main>
+<h1>第三阶段C 当前版本手机诊断</h1>
+<p>这里检查当前按需加载版本，不运行第三阶段A的22脚本大文件初始化链。预期数据版本：<strong>806c1dee090f3fe07a4a</strong>。</p>
+<p>本页基础说明不依赖JavaScript。若下方一直显示“诊断脚本尚未运行”，请记录浏览器和网络环境。诊断结果只在本机显示、复制或下载，不自动上传。</p>
+<noscript><p>当前浏览器未启用JavaScript，无法运行诊断；请保留本页可打开这一事实。</p></noscript>
+<section><h2>一 当前版本与清单</h2><button id="check">检查版本及manifest</button><pre id="version">诊断脚本尚未运行。</pre></section>
+<section><h2>二 当前考情真实初始化与操作</h2><p>点击后会在下面打开真实考情入口，只加载对应查询所需的数据。可在其中切换学期、阶段、学校、打开原题及执行关键词搜索。首次全文搜索需要完整检索范围，请保留实际等待与失败记录。</p><label for="route">可选历史分享链接的 # 后路由（留空使用默认七上期中）</label><input id="route" placeholder="#stages?f=…" autocomplete="off"><button id="start">运行当前版本考情</button><p id="status" role="status" aria-live="polite">尚未运行。</p><pre id="last">尚无当前版本数据状态。</pre><iframe id="app" title="当前版本考情查询实测" hidden></iframe></section>
+<section><h2>三 保存结果</h2><p>遇到错误后先导出再重试。若浏览器进程消失，重新打开本页只能显示此前保存的最后状态，不能判定后续阶段曾经成功。</p><p id="checkpoint" class="note"></p><button id="copy">复制当前诊断JSON</button><button id="download">下载当前诊断JSON</button><textarea id="json" readonly aria-label="当前诊断JSON"></textarea></section>
+<p><a href="考情查询/打开考情查询.html?release=v1.2.0-web-perf-3c">打开独立考情页面</a> · <a href="diagnostics.html?baseline=3a">历史第三阶段A大文件基线诊断</a> · <a href="index.html">首页</a></p>
+</main><script src="diagnostics/phase-3c.js"></script></body></html>
