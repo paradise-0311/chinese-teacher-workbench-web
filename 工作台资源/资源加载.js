@@ -1,17 +1,10 @@
-(function(){'use strict';
-const pending=new Map();
-function loadScript(path,options={}){
- const url=new URL(path,document.baseURI).href,verify=options.verify||(()=>true);
- if(options.verify&&verify())return Promise.resolve();if(pending.has(url))return pending.get(url);
- const promise=new Promise((resolve,reject)=>{let attempt=0,settled=false;
-  function run(){
-   const script=document.createElement('script');script.src=url;script.async=false;attempt++;
-   const timer=setTimeout(()=>{if(settled)return;settled=true;reject(Error('资源加载超时，请检查网络后重新打开：'+path));},options.timeout||120000);
-   script.onload=()=>{clearTimeout(timer);if(settled)return;if(!verify()){failed();return;}settled=true;resolve();};script.onerror=()=>{clearTimeout(timer);failed();};
-   function failed(){script.remove();if(settled)return;if(attempt<(options.attempts||3)){document.dispatchEvent(new CustomEvent('rc4-resource-retry',{detail:{path,attempt}}));setTimeout(run,attempt*250);}else{settled=true;reject(Error('资源加载失败（已尝试'+attempt+'次），请检查网络后重试：'+path));}}
-   document.head.appendChild(script);
-  }run();});
- pending.set(url,promise);promise.catch(()=>pending.delete(url));return promise;
+(function(root){'use strict';
+const pending=new Map(),executed=new Map();let execution=Promise.resolve();
+const failure=(name,message,detail={})=>Object.assign(new Error(message),{name,...detail});
+async function download(url,options){const attempts=options.attempts??3,timeout=options.timeout??120000;let error;for(let attempt=1;attempt<=attempts;attempt++){try{return await new Promise((resolve,reject)=>{const xhr=new XMLHttpRequest();let settled=false;function finish(e,text){if(settled)return;settled=true;if(e)reject(e);else resolve(text);}xhr.open('GET',url,true);xhr.timeout=timeout;xhr.onload=()=>{if(xhr.status<200||xhr.status>=300){finish(failure('HTTPError','资源请求返回 HTTP '+xhr.status,{url,status:xhr.status}));return;}if(!/(javascript|ecmascript)/i.test(xhr.getResponseHeader('Content-Type')||'')){finish(failure('MIMEError','脚本响应类型不正确',{url}));return;}finish(null,xhr.responseText);};xhr.onerror=()=>finish(failure('NetworkError','资源网络请求失败',{url}));xhr.ontimeout=()=>{finish(failure('TimeoutError','资源加载超时',{url,timeout}));try{xhr.abort();}catch(e){}};xhr.onabort=()=>finish(failure('AbortError','资源请求已中止',{url}));xhr.send();});}catch(e){error=e;if(attempt<attempts){document.dispatchEvent(new CustomEvent('rc4-resource-retry',{detail:{path:options.path,attempt,errorType:e.name}}));await new Promise(r=>setTimeout(r,Math.min(attempt*250,750)));}}}throw error;}
+async function digest(text){if(!root.crypto?.subtle)throw failure('IntegrityUnavailable','当前环境无法验证程序版本');const bytes=new TextEncoder().encode(text),hash=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function loadScript(path,options={}){const url=new URL(path,document.baseURI).href,key=url+'|'+(options.sha256||'');if(executed.has(key)){try{if(options.verify&&!options.verify())return Promise.reject(failure('VerificationError','已加载资源的业务对象不再有效：'+path));return Promise.resolve();}catch(e){return Promise.reject(e);}}if(pending.has(key))return pending.get(key);
+const task=(async()=>{const text=await download(url,{...options,path});if(options.sha256&&await digest(text)!==options.sha256)throw failure('VersionError','脚本内容与当前版本不一致：'+path,{url});let run;const previous=execution;execution=new Promise(resolve=>{run=resolve;});await previous;try{if(executed.has(key))return;let observed=null;const listener=e=>{observed=observed||e.error||failure('ScriptError',e.message||'脚本执行错误',{url,line:e.lineno});},policy=e=>{if(e.violatedDirective?.includes('script-src'))observed=observed||failure('CSPError','浏览器安全策略阻止脚本执行',{url});};window.addEventListener('error',listener);document.addEventListener('securitypolicyviolation',policy);const script=document.createElement('script');Object.defineProperty(script,'src',{value:url,configurable:true});try{script.text=text+'\n//# sourceURL='+url;document.head.appendChild(script);if(observed)throw observed;if(options.verify&&!options.verify())throw failure('VerificationError','脚本未建立所需业务对象：'+path,{url});executed.set(key,true);}finally{script.remove();window.removeEventListener('error',listener);document.removeEventListener('securitypolicyviolation',policy);}}finally{run();}})();pending.set(key,task);task.then(()=>pending.delete(key),()=>pending.delete(key));return task;
 }
-window.RC4StaticLoader={loadScript};
-})();
+root.RC4StaticLoader={loadScript,version:'phase-3c-1',state:()=>({pending:[...pending.keys()],executed:[...executed.keys()]})};
+})(window);
