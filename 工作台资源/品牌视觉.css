@@ -1,0 +1,320 @@
+/*
+ * 领世文学 · 品牌视觉 V0.2
+ * Load after the existing page and mobile styles.
+ * Brand tokens are separate from the existing chart/content tokens.
+ */
+:root {
+  --ls-paper: #f8f6f0;
+  --ls-surface: #fffefa;
+  --ls-ink: #203b4b;
+  --ls-muted: #566773;
+  --ls-line: #d7dcd8;
+  --ls-accent: #365f72;
+  --ls-accent-hover: #294c5e;
+  --ls-wordmark-font: "Songti SC", "SimSun", serif;
+}
+
+.topbar > .brand > .ls-wordmark,
+.m-global > .m-brand > .ls-wordmark {
+  font-family: var(--ls-wordmark-font);
+  font-weight: 600;
+  font-style: normal;
+  font-synthesis: weight;
+  line-height: 1.3;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+@media (min-width: 900px) {
+  /* Home/exam canvas and the existing bank canvas; surfaces stay separate. */
+  html:has(> body > .topbar),
+  html:has(> body > #app),
+  body:has(> .topbar),
+  body:has(> #app),
+  body > #app {
+    background-color: var(--ls-paper);
+  }
+
+  body > .topbar {
+    box-sizing: border-box;
+    height: 66px;
+    gap: 34px;
+    padding: 0 30px;
+    border-bottom-color: var(--ls-line);
+    background: #fff;
+  }
+
+  body > .topbar > .brand {
+    flex: 0 0 auto;
+    gap: 8px;
+    min-height: 44px;
+    color: var(--ls-ink);
+    white-space: nowrap;
+  }
+
+  body > .topbar > .brand > svg {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  body > .topbar > .brand > .ls-wordmark {
+    font-size: 24px;
+  }
+
+  body > .topbar > .brand > .ls-product {
+    margin-left: 4px;
+    padding-left: 12px;
+    border-left: 1px solid var(--ls-line);
+    font-family: "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  body > .topbar > nav {
+    flex: 0 0 auto;
+    gap: 28px;
+    min-width: 0;
+  }
+
+  body > .topbar > nav > a {
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--ls-muted);
+    white-space: nowrap;
+  }
+
+  /* Retain the existing underline selection shape. */
+  body > .topbar > nav > a[aria-current] {
+    color: var(--ls-accent);
+    border-bottom-color: var(--ls-accent);
+  }
+
+  body > .topbar > nav > a:hover {
+    color: var(--ls-accent);
+  }
+
+  body > .topbar > .quiet,
+  body > .topbar > .home-help,
+  body > .topbar > .keyboard-actions > .home-help,
+  body > .topbar > .keyboard-actions > .quiet {
+    min-height: 44px;
+    white-space: nowrap;
+  }
+
+  body > .topbar > .home-help,
+  body > .topbar > .keyboard-actions > .home-help {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0;
+    color: var(--ls-accent);
+    text-decoration: none;
+  }
+
+  body > .topbar .home-help:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  body > .topbar > .keyboard-actions {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 18px;
+    margin-left: auto;
+  }
+
+  body > .topbar > .keyboard-actions > .quiet {
+    font-size: 14px;
+  }
+
+  body > .home > .home-search > h1 {
+    color: var(--ls-ink);
+  }
+
+  body > .home .home-search-row {
+    align-items: center;
+    gap: 10px;
+  }
+
+  body > .home .home-search-row > input,
+  body > .home .home-search-row > button[type="submit"] {
+    box-sizing: border-box;
+    height: 56px;
+    min-height: 56px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  body > .home .home-search-row > input {
+    border-color: var(--ls-line);
+    background: var(--ls-surface);
+    color: var(--ls-ink);
+    caret-color: var(--ls-accent);
+  }
+
+  /* Explicit primary actions only: chart, tag and warning colors are untouched. */
+  body:has(> .topbar) button.primary,
+  #app button.primary {
+    background: var(--ls-accent);
+    border-color: var(--ls-accent);
+    color: #fff;
+  }
+
+  body:has(> .topbar) button.primary:hover:not(:disabled),
+  #app button.primary:hover:not(:disabled) {
+    background: var(--ls-accent-hover);
+    border-color: var(--ls-accent-hover);
+    color: #fff;
+  }
+
+  body > .topbar :is(a, button):focus-visible,
+  body > .home .home-search-row :is(input, button):focus-visible,
+  #app button.primary:focus-visible {
+    outline-color: var(--ls-accent);
+  }
+
+  /* The generated bank toolbar retains its existing height and layout. */
+  #app .search-tools,
+  #app .workspace-surface {
+    background-color: var(--ls-paper);
+  }
+
+  #app .home-tools-header .home-brand,
+  #app .search-tools:not(.home-tools-header) .workspace-home-link {
+    color: var(--ls-ink);
+    white-space: nowrap;
+  }
+
+  #app .home-tools-header .home-brand > span,
+  #app .search-tools:not(.home-tools-header) .workspace-home-link > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  #app .home-tools-header .home-brand::after,
+  #app .search-tools:not(.home-tools-header) .workspace-home-link::after {
+    content: "领世文学";
+    font-family: var(--ls-wordmark-font);
+    font-weight: 600;
+    font-style: normal;
+    font-synthesis: weight;
+    line-height: 1.3;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  #app .home-tools-header .home-brand {
+    gap: 8px;
+  }
+
+  #app .home-tools-header .home-brand::after {
+    font-size: 24px;
+  }
+
+  #app .home-tools-header .home-brand > svg {
+    width: 24px;
+    height: 24px;
+    color: var(--ls-ink);
+  }
+
+  #app .search-tools:not(.home-tools-header) .workspace-home-link::after {
+    font-size: 18px;
+  }
+
+  #app .search-tools:not(.home-tools-header) .workspace-home-link > svg {
+    color: var(--ls-ink);
+  }
+
+  /* The parent workspace supplies branding in embedded mode. */
+  .is-workspace-embedded #app .home-tools-header .home-brand::after,
+  .is-workspace-embedded #app .search-tools:not(.home-tools-header) .workspace-home-link::after {
+    content: none;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1050px) {
+  body > .topbar {
+    gap: 26px;
+  }
+
+  body > .topbar > nav {
+    gap: 22px;
+  }
+
+  body > .topbar > .keyboard-actions {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 899px) {
+  body[data-mobile-ui] .m-global {
+    box-sizing: border-box;
+    height: 56px;
+    min-height: 56px;
+    padding: 5px var(--m-pad, clamp(14px, 4vw, 16px));
+    gap: 8px;
+  }
+
+  body[data-mobile-ui] .m-global > .m-brand {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    gap: 6px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    color: var(--ls-ink);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  body[data-mobile-ui] .m-global > .m-brand > svg {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+  }
+
+  body[data-mobile-ui] .m-global > .m-brand > .ls-wordmark {
+    font-size: 18px;
+  }
+
+  body[data-mobile-ui] .m-global > nav {
+    flex: 1 1 0%;
+    min-width: 0;
+    gap: 4px;
+  }
+
+  body[data-mobile-ui] .m-global > nav > a {
+    min-width: 44px;
+    min-height: 44px;
+    white-space: nowrap;
+  }
+
+  body[data-mobile-ui] .m-global > .m-icon {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+
+  /* Existing mobile controls already have 46px height and 8px corners. */
+  body[data-mobile-ui] :is(.home-search-row, .search-row, form.home-search) > button[type="submit"] {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 359px) {
+  body[data-mobile-ui] .m-global > .m-brand > svg {
+    display: none;
+  }
+}
