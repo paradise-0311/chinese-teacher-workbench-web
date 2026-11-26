@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title">
+  <title id="title">领世文学书本标志与字标</title>
+  <rect width="1200" height="630" fill="#f8f6f0"/>
+  <g transform="translate(308 251) scale(5.3333333333)" fill="none" stroke="#203b4b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 5c4-1 6-1 9 1 3-2 5-2 9-1v14c-4-1-6-1-9 1-3-2-5-2-9-1Z"/>
+    <path d="M12 6v14"/>
+  </g>
+  <text x="460" y="360" fill="#203b4b" font-family="Noto Serif CJK SC, SimSun, Songti SC, serif" font-size="104" font-weight="600">领世文学</text>
+</svg>
